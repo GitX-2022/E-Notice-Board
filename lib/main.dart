@@ -6,14 +6,11 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.landscapeLeft,
-      DeviceOrientation.landscapeRight,
-    ]);
     return MaterialApp(
       title: 'E_Notice_Board',
       theme: ThemeData(primarySwatch: Colors.lightGreen),
       home: MyHomePage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -62,13 +59,23 @@ class MyHomePage extends StatelessWidget {
             ],
           ),
         ),
-        body: Center(
-          child: Container(
-            width: 700,
-            height: 350,
-            color: Colors.white,
-            child: Image.asset('images/board.png', fit: BoxFit.cover),
-          ),
+        body: Stack(
+          children: [
+            Center(
+              child: Container(
+                width: double.infinity,
+                height: double.infinity,
+                color: Colors.white,
+                child: Image.asset('images/board.png', fit: BoxFit.fill),
+              ),
+            ),
+            Container(
+              alignment: Alignment.bottomRight,
+              padding: EdgeInsets.symmetric(vertical: 60, horizontal: 40),
+              child: FloatingActionButton(
+                  onPressed: () {}, child: Icon(Icons.add_rounded)),
+            ),
+          ],
         ));
   }
 }
